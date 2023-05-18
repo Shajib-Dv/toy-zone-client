@@ -10,12 +10,12 @@ const Navbar = () => {
 
   //sign in button
   const SignInBtn = () => {
-    return <button className="btn">Sign in</button>;
+    return <button className="primary-btn">Sign in</button>;
   };
 
   //sign Out button
   const SignOutBtn = () => {
-    return <button className="btn">Sign out</button>;
+    return <button className="primary-btn">Sign out</button>;
   };
 
   //user profile info
