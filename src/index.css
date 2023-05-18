@@ -7,3 +7,8 @@
 .primary-btn {
   @apply btn bg-purple-400 outline-none border-none text-black hover:bg-purple-500 font-bold;
 }
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: rgba(128, 0, 128, 0.678);
+}
