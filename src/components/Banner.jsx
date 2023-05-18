@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation, Autoplay } from "swiper";
 import { HiShoppingCart } from "react-icons/hi";
 
 const Banner = () => {
@@ -20,17 +20,24 @@ const Banner = () => {
         slidesPerView={1}
         spaceBetween={30}
         loop={true}
+        autoplay
         pagination={{
           clickable: true,
         }}
         navigation={true}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation, Autoplay]}
         className="mySwiper"
       >
         {bannerImg.map((img, idx) => (
           <SwiperSlide key={idx}>
-            <div className="h-[calc(100vh-100px)] w-full flex bg-[rgba(223,37,236,0.17)] ">
-              <img src={img} alt="banner" className=" h-full w-1/2 bg-cover" />
+            <div className="md:h-[calc(100vh-100px)] w-full block md:flex bg-[rgba(223,37,236,0.17)] ">
+              <div className="w-full">
+                <img
+                  src={img}
+                  alt="banner"
+                  className="h-96 md:h-full md:w-3/5 bg-cover"
+                />
+              </div>
               <div className=" w-full h-full flex justify-center items-cent text-white text-center">
                 <div className="p-10 text-black space-y-16">
                   <h2 className="text-5xl font-bold bg-purple-300 p-4 rounded-md">
