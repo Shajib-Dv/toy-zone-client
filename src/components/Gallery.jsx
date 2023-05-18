@@ -16,26 +16,24 @@ const Gallery = () => {
   //   console.log(toys);
   return (
     <div className="my-32">
-      <h2 className="text-5xl text-center font-bold text-purple-600">
-        Trending on this weak
-      </h2>
+      <h2 className="primary-title">Trending on this Weak</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-20 mx-10">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-20 mx-10 md:mx-10">
         {toys &&
           toys?.map((toy) => (
-            <>
-              <div key={toy._id} className="avatar">
-                <div className="w-full mask mask-hexagon  motion">
-                  <img src={toy.toyImage} />
-                  <div class="absolute top-0 overlay-img">
-                    <p class="text-black text-5xl font-bold">{toy.toyName}</p>
-                    <button className="primary-btn gap-4">
-                      Shop Now <HiShoppingCart className="text-2xl" />
-                    </button>
-                  </div>
+            <div key={toy._id} className="avatar">
+              <div className="w-full mask mask-hexagon  motion">
+                <img src={toy.toyImage} />
+                <div className="absolute top-0 overlay-img">
+                  <p className="text-black text-3xl text-center font-bold">
+                    {toy.toyName}
+                  </p>
+                  <button className="primary-btn gap-4">
+                    Shop Now <HiShoppingCart className="text-2xl" />
+                  </button>
                 </div>
               </div>
-            </>
+            </div>
           ))}
       </div>
     </div>
