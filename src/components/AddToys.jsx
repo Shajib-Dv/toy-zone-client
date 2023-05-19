@@ -1,13 +1,63 @@
 /** @format */
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddToys = () => {
   const [category, setCategory] = useState("");
+  const navigate = useNavigate();
+
+  const handleAddToy = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const toyImage = from.photo.value;
+    const toyName = from.toyName.value;
+    const sellerName = from.sellerName.value;
+    const sellerEmail = from.sellerEmail.value;
+    const price = from.price.value;
+    const rating = from.rating.value;
+    const quantity = from.quantity.value;
+    const details = from.details.value;
+
+    const toyInfo = {
+      sellerName,
+      sellerEmail,
+      toyImage,
+      price,
+      quantity,
+      rating,
+      details,
+      toyName,
+      subCategory: category,
+    };
+    // console.log(toyInfo);
+    //create toy in db
+    fetch("http://localhost:5000/toys", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(toyInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Toy added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          from.reset();
+          navigate("/mytoys");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
-      <form className="space-y-4 mx-6 md:mx-10 my-10">
+      <form onSubmit={handleAddToy} className="space-y-4 mx-6 md:mx-10 my-10">
         <div className="flex flex-col md:flex-row gap-4 items-center">
           <div className="form-control w-full">
             <label className="input-group input-group-vertical">
@@ -66,7 +116,7 @@ const AddToys = () => {
               <span>Category</span>
               <select
                 defaultValue={"Select category"}
-                onChange={(e) => setCategory(e.target.value)}
+                onBlur={(e) => setCategory(e.target.value)}
                 className="select w-full max-w-xs outline-none border-none bg-transparent"
               >
                 <option disabled>Select category</option>
@@ -93,12 +143,13 @@ const AddToys = () => {
         <div className="flex flex-col md:flex-row gap-4 items-center">
           <div className="form-control w-full">
             <label className="input-group input-group-vertical">
-              <span>Ratting</span>
+              <span>Rating</span>
               <input
                 type="number"
                 min={0}
-                name="ratting"
-                placeholder="Ratting"
+                max={5}
+                name="rating"
+                placeholder="Rating"
                 className="p-4 outline-none bg-[#cd33c848] border-none"
               />
             </label>

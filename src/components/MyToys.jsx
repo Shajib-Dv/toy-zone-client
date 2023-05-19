@@ -8,7 +8,7 @@ const MyToys = () => {
   const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
-    fetch(`https://toys-zone-server-five.vercel.app/toys/s@j.com`)
+    fetch(`http://localhost:5000/toys/s@j.com`)
       .then((res) => res.json())
       .then((data) => setToys(data))
       .catch((error) => console.log(error));
