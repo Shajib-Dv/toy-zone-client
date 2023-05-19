@@ -1,16 +1,22 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import ActiveLink from "../ActiveLink";
+import { AuthContest } from "../../AuthProvider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
-  const user = true;
+  const { user } = useContext(AuthContest);
 
   //sign in button
   const SignInBtn = () => {
-    return <button className="primary-btn">Sign in</button>;
+    return (
+      <Link to="/signin">
+        <button className="primary-btn">Sign in</button>
+      </Link>
+    );
   };
 
   //sign Out button

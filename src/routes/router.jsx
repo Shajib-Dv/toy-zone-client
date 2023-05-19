@@ -11,6 +11,7 @@ import AddToys from "../components/AddToys";
 import Blog from "../components/Blog";
 import ToyDetails from "../components/ToyDetails";
 import UpdateToy from "../components/UpdateToy";
+import SignIn from "../UserAccount/SignIn";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
       },
     ],
   },
