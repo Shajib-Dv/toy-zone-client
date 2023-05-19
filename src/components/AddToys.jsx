@@ -33,7 +33,7 @@ const AddToys = () => {
     };
     // console.log(toyInfo);
     //create toy in db
-    fetch("http://localhost:5000/toys", {
+    fetch("https://toys-zone-server-five.vercel.app/toys", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(toyInfo),

@@ -29,13 +29,17 @@ const router = createBrowserRouter([
         path: "/toys/:id",
         element: <ToyDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/toys/toy/${params.id}`),
+          fetch(
+            `https://toys-zone-server-five.vercel.app/toys/toy/${params.id}`
+          ),
       },
       {
         path: "/toys/update/:id",
         element: <UpdateToy />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/toys/toy/${params.id}`),
+          fetch(
+            `https://toys-zone-server-five.vercel.app/toys/toy/${params.id}`
+          ),
       },
       {
         path: "/mytoys",

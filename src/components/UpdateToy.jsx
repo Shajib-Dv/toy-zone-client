@@ -20,7 +20,7 @@ const UpdateToy = () => {
     const details = from.details.value;
     const toyInfo = { toyName, price, quantity, details };
 
-    fetch(`http://localhost:5000/toys/toy/${id}`, {
+    fetch(`https://toys-zone-server-five.vercel.app/toys/toy/${id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(toyInfo),

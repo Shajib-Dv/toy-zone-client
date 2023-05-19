@@ -8,7 +8,7 @@ const MyToys = () => {
   const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/toys/s@j.com`)
+    fetch(`https://toys-zone-server-five.vercel.app/toys/s@j.com`)
       .then((res) => res.json())
       .then((data) => setToys(data))
       .catch((error) => console.log(error));
@@ -16,7 +16,7 @@ const MyToys = () => {
 
   return (
     <>
-      <div className="overflow-x-hidden w-full my-10">
+      <div className="overflow-x-auto w-full my-10">
         <table className="table w-full">
           {/* head */}
           <thead>
