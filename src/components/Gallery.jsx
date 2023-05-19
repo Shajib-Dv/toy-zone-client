@@ -18,7 +18,7 @@ const Gallery = () => {
     <div className="my-32">
       <h2 className="primary-title">Trending on this Weak</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-20 mx-10 md:mx-10">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-20 mx-6 md:mx-10">
         {toys &&
           toys?.map((toy) => (
             <div key={toy._id} className="avatar">

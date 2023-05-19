@@ -29,3 +29,7 @@
 .tab-btn {
   @apply bg-purple-400 rounded-xl btn-xs md:btn-md btn hover:bg-purple-500 text-black font-bold md:gap-2 outline-none border-none;
 }
+
+.title-stat {
+  @apply stat-title text-gray-900 font-bold;
+}
