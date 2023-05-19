@@ -1,12 +1,20 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import ToyTable from "./ToyTable";
 
 const AllToys = () => {
-  const toys = useLoaderData();
-  console.log(toys);
+  const [toys, setToys] = useState([]);
+  const [isDelete, setIsDelete] = useState(false);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/toys")
+      .then((res) => res.json())
+      .then((data) => setToys(data))
+      .catch((error) => console.log(error));
+  }, [isDelete]);
+
   return (
     <>
       <div className="overflow-x-hidden w-full my-10">
@@ -23,7 +31,15 @@ const AllToys = () => {
             </tr>
           </thead>
           <tbody>
-            {toys && toys?.map((toy) => <ToyTable key={toy._id} toy={toy} />)}
+            {toys &&
+              toys?.map((toy) => (
+                <ToyTable
+                  key={toy._id}
+                  toy={toy}
+                  setIsDelete={setIsDelete}
+                  isDelete={isDelete}
+                />
+              ))}
           </tbody>
         </table>
       </div>

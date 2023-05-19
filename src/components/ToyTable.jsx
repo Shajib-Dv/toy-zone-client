@@ -3,8 +3,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaPen, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
-const ToyTable = ({ toy, editable = true }) => {
+const ToyTable = ({ toy, editable = true, isDelete, setIsDelete }) => {
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes !",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/toys/toy/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              setIsDelete(!isDelete);
+              Swal.fire("Deleted!", "Your Toy has been deleted.", "success");
+            }
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+  };
+
   const {
     _id,
     sellerName,
@@ -41,7 +68,10 @@ const ToyTable = ({ toy, editable = true }) => {
               <button className="btn-xs btn bg-transparent hover:bg-transparent border-none text-purple-600">
                 <FaPen />
               </button>
-              <button className="btn-xs btn bg-transparent hover:bg-transparent border-none text-error">
+              <button
+                onClick={() => handleDelete(_id)}
+                className="btn-xs btn bg-transparent hover:bg-transparent border-none text-error"
+              >
                 <FaTrash />
               </button>
             </div>
