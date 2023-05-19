@@ -1,18 +1,27 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContest } from "../AuthProvider/AuthProvider";
 
 const SignIn = () => {
   const [name, setName] = useState("");
   const [photo, setPhoto] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const { signInUser } = useContext(AuthContest);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(
-      `First Name: ${name}, Last Name: ${photo}, Email: ${email}, Password: ${password}`
-    );
+    setError("");
+
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        event.target.reset();
+      })
+      .catch((error) => setError(error.message));
   };
   return (
     <>
@@ -69,7 +78,7 @@ const SignIn = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -78,7 +87,7 @@ const SignIn = () => {
                   />
                   <label className="label">
                     <p className="label-text-alt link link-hover">
-                      Forgot password?
+                      {error && error}
                     </p>
                   </label>
                 </div>

@@ -27,9 +27,9 @@ const Navbar = () => {
   //user profile info
   const UserProfile = () => {
     return (
-      <div className="avatar">
+      <div title={user?.displayName || "Name not added"} className="avatar">
         <div className="w-16 mask mask-hexagon">
-          <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <img src={user?.photoURL} />
         </div>
       </div>
     );
