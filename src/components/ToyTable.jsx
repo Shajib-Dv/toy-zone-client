@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FaPen, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
-const ToyTable = ({ toy, editable = true, isDelete, setIsDelete }) => {
+const ToyTable = ({ toy, editable, isDelete, setIsDelete }) => {
   //handle delete
   const handleDelete = (id) => {
     Swal.fire({
