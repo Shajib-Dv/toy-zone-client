@@ -44,14 +44,19 @@ const ToyDetails = () => {
       </figure>
       <div className="card-body text-center">
         <div className="indicator mx-auto">
-          <span className="indicator-item top-0 -right-5 badge badge-secondary">
+          <span className="indicator-item -top-1 -right-5 badge badge-secondary">
             {subCategory}
           </span>
           <p className="text-3xl text-purple-700 tracking-wider font-bold">
             {toyName}
           </p>
         </div>
-        {sellerName && <p className="font-bold">Seller : {sellerName}</p>}
+        {sellerName && (
+          <>
+            <p className="font-semibold">Seller : {sellerName}</p>
+            <p className="font-semibold">Email : {sellerEmail}</p>
+          </>
+        )}
         <p className="text-xl font-semibold text-gray-700">{details}</p>
         <p className="text-2xl text-purple-600 font-bold">${price}</p>
         <p className="text-xl flex justify-center items-center gap-2 text-purple-600 font-bold">

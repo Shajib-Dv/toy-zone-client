@@ -1,11 +1,12 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaPen, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const ToyTable = ({ toy, editable = true, isDelete, setIsDelete }) => {
+  //handle delete
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -17,7 +18,7 @@ const ToyTable = ({ toy, editable = true, isDelete, setIsDelete }) => {
       confirmButtonText: "Yes !",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/toys/toy/${_id}`, {
+        fetch(`http://localhost:5000/toys/toy/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -65,9 +66,11 @@ const ToyTable = ({ toy, editable = true, isDelete, setIsDelete }) => {
         <th>
           {editable ? (
             <div className="flex gap-2">
-              <button className="btn-xs btn bg-transparent hover:bg-transparent border-none text-purple-600">
-                <FaPen />
-              </button>
+              <Link to={`/toys/update/${_id}`}>
+                <button className="btn-xs btn bg-transparent hover:bg-transparent border-none text-purple-600">
+                  <FaPen />
+                </button>
+              </Link>
               <button
                 onClick={() => handleDelete(_id)}
                 className="btn-xs btn bg-transparent hover:bg-transparent border-none text-error"
