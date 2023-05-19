@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const ToyCard = ({ toy }) => {
   const {
+    _id,
     sellerName,
     sellerEmail,
     toyImage,
@@ -30,7 +31,7 @@ const ToyCard = ({ toy }) => {
             <p>Rating : {rating}</p>
           </div>
           <div>
-            <Link to="/">
+            <Link to={`/toys/${_id}`}>
               <button className="primary-btn mt-4">view details</button>
             </Link>
           </div>

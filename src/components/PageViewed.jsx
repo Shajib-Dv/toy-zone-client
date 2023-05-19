@@ -4,8 +4,8 @@ import React from "react";
 
 const PageViewed = () => {
   return (
-    <div className="md:stats shadow mb-20 w-full h-60 px-10">
-      <div className="stat bg-[#cc06d680] rounded-s-md">
+    <div className="md:stats mb-20 w-full md:h-60 px-6 md:px-10">
+      <div className="stat bg-[#cc06d680] md:rounded-s-md">
         <div className="stat-figure text-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const PageViewed = () => {
         <div className="stat-desc title-stat">21% more than last month</div>
       </div>
 
-      <div className="stat bg-[#cc06d680] rounded-e-md">
+      <div className="stat bg-[#cc06d680] md:rounded-e-md">
         <div className="stat-figure text-primary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
