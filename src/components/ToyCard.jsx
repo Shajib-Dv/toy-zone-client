@@ -33,12 +33,12 @@ const ToyCard = ({ toy }) => {
     AOS.init({
       once: true,
       offset: 200,
-      duration: 100,
+      duration: 1000,
       easing: "ease-in-out",
       delay: 100,
       anchorPlacement: "center-bottom",
       mirror: true,
-      startEvent: "load",
+      startEvent: "DOMContentLoaded",
       disable: false,
     });
   }, []);
@@ -59,7 +59,7 @@ const ToyCard = ({ toy }) => {
       <div
         className="card w-96 mx-auto my-10 shadow-2xl shadow-purple-600"
         data-aos="zoom-in-left"
-        data-aos-duration="1000"
+        ata-aos-duration="800"
       >
         <figure className="h-64">
           <img src={toyImage} />

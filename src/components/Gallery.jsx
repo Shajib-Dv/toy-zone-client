@@ -17,12 +17,14 @@ const Gallery = () => {
 
   useEffect(() => {
     AOS.init({
-      once: false,
+      once: true,
       offset: 200,
-      duration: 100,
+      duration: 1000,
+      easing: "ease-in-out",
       delay: 100,
+      anchorPlacement: "center-bottom",
       mirror: true,
-      startEvent: "load",
+      startEvent: "DOMContentLoaded",
       disable: false,
     });
   }, []);
@@ -39,7 +41,7 @@ const Gallery = () => {
               key={toy._id}
               className="avatar"
               data-aos="fade-up"
-              data-aos-duration="1000"
+              ata-aos-duration="800"
             >
               <div className="w-full mask mask-hexagon  motion">
                 <img src={toy.toyImage} />
