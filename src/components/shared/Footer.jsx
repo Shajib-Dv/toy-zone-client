@@ -13,7 +13,7 @@ const Footer = () => {
     <>
       <footer className="footer p-10 bg-purple-200">
         <div>
-          <img src="/logo.jpg" className="w-20 rounded-full" alt="logo" />
+          <img src="/logo.png" className="w-20 rounded-full" alt="logo" />
           <p className="font-semibold">
             Toys Zone Ltd.
             <br />

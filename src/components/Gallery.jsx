@@ -17,12 +17,10 @@ const Gallery = () => {
 
   useEffect(() => {
     AOS.init({
-      once: true,
+      once: false,
       offset: 200,
       duration: 100,
-      easing: "ease-in-out",
       delay: 100,
-      anchorPlacement: "center-bottom",
       mirror: true,
       startEvent: "load",
       disable: false,
@@ -57,6 +55,9 @@ const Gallery = () => {
             </div>
           ))}
       </div>
+      {toys.length == 0 && (
+        <progress className="progress text-purple-700"></progress>
+      )}
     </div>
   );
 };

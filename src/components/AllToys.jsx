@@ -5,6 +5,7 @@ import ToyTable from "./ToyTable";
 
 const AllToys = () => {
   const [toys, setToys] = useState([]);
+  const [showMore, setShowMore] = useState(20);
 
   useEffect(() => {
     fetch("https://toys-zone-server-five.vercel.app/toys")
@@ -13,12 +14,20 @@ const AllToys = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  const handleSearch = (text) => {
+    fetch(`https://toys-zone-server-five.vercel.app/toys/name?toyName=${text}`)
+      .then((res) => res.json())
+      .then((data) => setToys(data))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
       <div className="flex justify-center my-4">
         <div className="form-control w-1/2">
           <div className="input-group">
             <input
+              onChange={(e) => handleSearch(e.target.value)}
               type="text"
               placeholder="Search…"
               className="input input-bordered w-full"
@@ -60,8 +69,20 @@ const AllToys = () => {
           </tbody>
         </table>
       </div>
+      {toys.length == 0 && (
+        <p className="text-center text-4xl text-red-700 font-bold">
+          No toys found !
+        </p>
+      )}
       <div className="flex justify-center my-4">
-        <button className="primary-btn">Show More</button>
+        {toys?.length > 20 && (
+          <button
+            onClick={() => setShowMore(showMore + 10)}
+            className="primary-btn"
+          >
+            Show More
+          </button>
+        )}
       </div>
     </>
   );

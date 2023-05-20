@@ -34,6 +34,7 @@ const ShopByCategory = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mx-6 md:mx-10 mt-20">
         {toys && toys?.map((toy) => <ToyCard key={toy._id} toy={toy} />)}
       </div>
+      {toys.length == 0 && <progress className="progress"></progress>}
     </div>
   );
 };

@@ -7,17 +7,49 @@ import { AuthContest } from "../AuthProvider/AuthProvider";
 const MyToys = () => {
   const [toys, setToys] = useState([]);
   const [isDelete, setIsDelete] = useState(false);
+  const [sortAscending, setSortAscending] = useState(true);
+  const [sort, setSort] = useState(1);
   const { user } = useContext(AuthContest);
 
+  //sorting
+  const handleSortChange = () => {
+    const newSortOrder = !sortAscending;
+    setSortAscending(newSortOrder);
+  };
+
   useEffect(() => {
-    fetch(`https://toys-zone-server-five.vercel.app/toys/${user?.email}`)
+    fetch(
+      `https://toys-zone-server-five.vercel.app/toys/${user?.email}?num=${sort}`
+    )
       .then((res) => res.json())
       .then((data) => setToys(data))
       .catch((error) => console.log(error));
-  }, [isDelete]);
+  }, [isDelete, sort]);
 
   return (
     <>
+      <div className="flex justify-center mt-4">
+        <span onClick={handleSortChange}>
+          <button
+            className={`mx-2 py-2 px-4 rounded focus:outline-none ${
+              sortAscending ? "bg-purple-600 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setSort(1)}
+          >
+            Low Price
+          </button>
+        </span>
+        <span onClick={handleSortChange}>
+          <button
+            className={`mx-2 py-2 px-4 rounded focus:outline-none ${
+              sortAscending ? "bg-gray-200" : "bg-purple-600 text-white"
+            }`}
+            onClick={() => setSort(-1)}
+          >
+            High Price
+          </button>
+        </span>
+      </div>
       <div className="overflow-x-auto w-full my-10">
         <table className="table w-full">
           {/* head */}
@@ -45,6 +77,7 @@ const MyToys = () => {
           </tbody>
         </table>
       </div>
+      {toys.length == 0 && <progress className="progress"></progress>}
     </>
   );
 };

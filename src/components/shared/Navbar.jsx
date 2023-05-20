@@ -72,8 +72,11 @@ const Navbar = () => {
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
-              <div>
-                <img src="/logo.jpg" className="w-16 rounded-full bg-cover" />
+              <div className="flex items-center">
+                <img src="/logo.png" className="w-16  rounded-full bg-cover" />
+                <p className="hidden md:block text-2xl text-purple-700 font-bold">
+                  Toys-Zone
+                </p>
               </div>
               {user && (
                 <div className="md:hidden">

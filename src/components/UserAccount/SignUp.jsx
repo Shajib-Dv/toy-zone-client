@@ -22,6 +22,12 @@ const SignIn = () => {
     event.preventDefault();
     setError("");
 
+    //validation
+    if (password.length < 6) {
+      setError("Password must be six character long");
+      return;
+    }
+
     signUpUser(email, password)
       .then((result) => {
         Swal.fire({
