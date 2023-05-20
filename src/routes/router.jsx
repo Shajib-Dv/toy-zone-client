@@ -11,7 +11,8 @@ import AddToys from "../components/AddToys";
 import Blog from "../components/Blog";
 import ToyDetails from "../components/ToyDetails";
 import UpdateToy from "../components/UpdateToy";
-import SignIn from "../UserAccount/SignIn";
+import SignIn from "../components/UserAccount/SignIn";
+import SignUp from "../components/UserAccount/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/signin",
         element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
     ],
   },

@@ -5,10 +5,27 @@ import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import ActiveLink from "../ActiveLink";
 import { AuthContest } from "../../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
-  const { user } = useContext(AuthContest);
+  const { user, logOut } = useContext(AuthContest);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Sign out Successful",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      })
+      .catch((error) => console.log(error));
+  };
 
   //sign in button
   const SignInBtn = () => {
@@ -21,16 +38,30 @@ const Navbar = () => {
 
   //sign Out button
   const SignOutBtn = () => {
-    return <button className="primary-btn">Sign out</button>;
+    return (
+      <button onClick={handleLogOut} className="primary-btn">
+        Sign out
+      </button>
+    );
   };
 
   //user profile info
   const UserProfile = () => {
     return (
-      <div title={user?.displayName || "Name not added"} className="avatar">
+      <div
+        title={user?.displayName || "Name not added"}
+        className="avatar placeholder"
+      >
         <div className="w-16 mask mask-hexagon">
-          <img src={user?.photoURL} />
+          {user?.photoURL ? (
+            <img src={user?.photoURL} />
+          ) : (
+            <div className="text-3xl text-black font-bold rounded-full w-full h-full flex justify-center items-center bg-purple-500">
+              {user?.email.slice(0, 1)}
+            </div>
+          )}
         </div>
+        <ToastContainer />
       </div>
     );
   };

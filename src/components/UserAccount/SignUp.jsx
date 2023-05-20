@@ -1,7 +1,12 @@
 /** @format */
 
 import React, { useContext, useState } from "react";
-import { AuthContest } from "../AuthProvider/AuthProvider";
+import { AuthContest } from "../../AuthProvider/AuthProvider";
+import { Link } from "react-router-dom";
+import SocialSignIn from "./SocialSignIn";
+import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignIn = () => {
   const [name, setName] = useState("");
@@ -10,31 +15,50 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { signInUser } = useContext(AuthContest);
+  const { signUpUser } = useContext(AuthContest);
 
-  const handleSubmit = (event) => {
+  const handleSignUp = (event) => {
     event.preventDefault();
     setError("");
 
-    signInUser(email, password)
+    signUpUser(email, password)
       .then((result) => {
-        console.log(result.user);
-        event.target.reset();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Sign up Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            toast("User Profile Updated");
+          })
+          .catch((error) => setError(error.message));
+
+        //reset input field
+        setName("");
+        setPhoto("");
+        setEmail("");
+        setPassword("");
       })
       .catch((error) => setError(error.message));
   };
   return (
     <>
       <h1 className="text-5xl font-bold text-purple-700 py-10 text-center">
-        Sign in now!
+        Please Register
       </h1>
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="md:w-1/2">
-            <img src="/signIn.jpg" alt="signin" />
+            <img src="/signUp.jpg" alt="signin" />
           </div>
           <div className="card flex-shrink-0 w-full  max-w-sm shadow-2xl md:w-1/2">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSignUp}>
               <div className="card-body shadow-2xl shadow-purple-600 rounded-md bg-purple-400">
                 <div className="form-control">
                   <label className="label">
@@ -86,14 +110,21 @@ const SignIn = () => {
                     className="p-4 border rounded-md outline-none"
                   />
                   <label className="label">
-                    <p className="label-text-alt link link-hover">
+                    <p className="label-text-alt text-red-700 font-semibold link link-hover">
                       {error && error}
                     </p>
                   </label>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary">Sign in</button>
+                  <button className="btn btn-primary">Sign up</button>
                 </div>
+                <SocialSignIn />
+                <p className="mt-2 text-xl font-semibold">
+                  Already have an account !{" "}
+                  <Link to="/signin" className="btn-link">
+                    Sign in
+                  </Link>
+                </p>
               </div>
             </form>
           </div>
