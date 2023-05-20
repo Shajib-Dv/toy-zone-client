@@ -74,7 +74,7 @@ const ToyTable = ({ toy, editable, isDelete, setIsDelete }) => {
           </div>
         </td>
         <td>{subCategory}</td>
-        <td>{price}</td>
+        <td>${price}</td>
         <td>{quantity}</td>
         <th>
           {editable ? (

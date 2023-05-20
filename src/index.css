@@ -11,6 +11,7 @@
 .swiper-button-prev::after,
 .swiper-button-next::after {
   color: rgba(128, 0, 128, 0.678);
+  @apply md:block hidden;
 }
 
 .motion {

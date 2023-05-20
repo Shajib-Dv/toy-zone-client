@@ -69,7 +69,7 @@ const ToyDetails = () => {
           <FaStar />
           <FaStar />
           <FaStar />
-          <FaStarHalfAlt />
+          {rating > 4 ? <FaStar /> : <FaStarHalfAlt />}
         </div>
       </div>
       <button

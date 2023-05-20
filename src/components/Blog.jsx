@@ -4,7 +4,7 @@ import React from "react";
 
 const Blog = () => {
   return (
-    <div className="my-10 md:mx-10 mx-6 space-y-5">
+    <div className="my-10 md:mx-10 mx-6 space-y-5 text-black">
       <div className="p-4 rounded-md shadow-2xl border-purple-500 border bg-purple-300 shadow-purple-600">
         <h2 className="text-2xl text-center font-bold">
           What is an access token and refresh token?

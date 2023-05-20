@@ -92,13 +92,13 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-full bg-[rgba(234,63,239,0.09)] px-10">
+      <nav className="w-full bg-[rgba(234,63,239,0.09)] md:px-10">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               <div className="flex items-center">
                 <img src="/logo.png" className="w-16  rounded-full bg-cover" />
-                <p className="hidden md:block text-2xl text-purple-700 font-bold">
+                <p className=" md:block text-2xl text-purple-700 font-bold">
                   Toys-Zone
                 </p>
               </div>
