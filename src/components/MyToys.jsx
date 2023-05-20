@@ -77,7 +77,11 @@ const MyToys = () => {
           </tbody>
         </table>
       </div>
-      {toys.length == 0 && <progress className="progress"></progress>}
+      {toys.length == 0 && (
+        <p className="text-center text-4xl text-red-700 font-bold">
+          No toys found !
+        </p>
+      )}
     </>
   );
 };

@@ -21,7 +21,7 @@ const SubscribeNews = () => {
   return (
     <div className="w-full h-64 bg-[url('/news-leter.jpg')] bg-center bg-cover">
       <div className="flex items-center justify-center w-full h-full bg-[rgb(0,0,0,0.5)]">
-        <div className="bg-white rounded-lg w-1/2  shadow-lg p-8">
+        <div className="bg-white rounded-lg w-full md:w-1/2  shadow-lg p-8">
           <h2 className="text-2xl text-center font-bold mb-4">
             Get Our Leanest News
           </h2>

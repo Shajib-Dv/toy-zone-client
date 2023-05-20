@@ -4,10 +4,10 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContest } from "../AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const AddToys = () => {
   const [category, setCategory] = useState("");
-  const navigate = useNavigate();
   const { user } = useContext(AuthContest);
 
   const handleAddToy = (e) => {
@@ -21,6 +21,15 @@ const AddToys = () => {
     const rating = from.rating.value;
     const quantity = from.quantity.value;
     const details = from.details.value;
+
+    //validation
+    if (isNaN(price) || isNaN(quantity) || isNaN(rating)) {
+      toast("Please add any numbers");
+      return;
+    } else if (rating > 5) {
+      toast("Rating must be less than 5");
+      return;
+    }
 
     const toyInfo = {
       sellerName,
@@ -51,7 +60,6 @@ const AddToys = () => {
             timer: 1500,
           });
           from.reset();
-          navigate("/mytoys");
         }
       })
       .catch((error) => console.log(error));
@@ -93,7 +101,7 @@ const AddToys = () => {
               <input
                 type="text"
                 name="sellerName"
-                value={user?.displayName}
+                defaultValue={user?.displayName}
                 placeholder="Seller name"
                 className="p-4 outline-none bg-[#cd33c848] border-none"
               />
@@ -105,8 +113,8 @@ const AddToys = () => {
               <input
                 type="email"
                 name="sellerEmail"
-                value={user?.email}
-                required
+                defaultValue={user?.email}
+                readOnly
                 placeholder="Seller email"
                 className="p-4 outline-none bg-[#cd33c848] border-none"
               />
@@ -149,7 +157,7 @@ const AddToys = () => {
             <label className="input-group input-group-vertical">
               <span>Rating</span>
               <input
-                type="number"
+                type="text"
                 min={0}
                 max={5}
                 name="rating"
@@ -162,7 +170,7 @@ const AddToys = () => {
             <label className="input-group input-group-vertical">
               <span>Quantity</span>
               <input
-                type="number"
+                type="text"
                 min={0}
                 name="quantity"
                 required

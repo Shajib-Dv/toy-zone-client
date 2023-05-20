@@ -57,7 +57,7 @@ const ToyCard = ({ toy }) => {
   return (
     <>
       <div
-        className="card w-96 mx-auto my-10 shadow-2xl shadow-purple-600"
+        className="card w-full md:w-96 mx-auto my-10 shadow-2xl shadow-purple-600"
         data-aos="zoom-in-left"
         ata-aos-duration="800"
       >

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 const UpdateToy = () => {
@@ -19,6 +20,12 @@ const UpdateToy = () => {
     const quantity = from.quantity.value;
     const details = from.details.value;
     const toyInfo = { toyName, price, quantity, details };
+
+    //validation
+    if (isNaN(price) || isNaN(quantity)) {
+      toast("Please add any number");
+      return;
+    }
 
     fetch(`https://toys-zone-server-five.vercel.app/toys/toy/${id}`, {
       method: "PUT",
@@ -69,7 +76,7 @@ const UpdateToy = () => {
               Price:
             </label>
             <input
-              type="number"
+              type="text"
               id="price"
               name="price"
               defaultValue={toy?.price}
@@ -82,7 +89,7 @@ const UpdateToy = () => {
               Available Quantity:
             </label>
             <input
-              type="number"
+              type="text"
               id="quantity"
               name="quantity"
               defaultValue={toy?.quantity}
