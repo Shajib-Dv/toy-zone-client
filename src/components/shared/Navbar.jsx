@@ -1,16 +1,17 @@
 /** @format */
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import ActiveLink from "../ActiveLink";
 import { AuthContest } from "../../AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
+  const location = useLocation();
   const { user, logOut } = useContext(AuthContest);
 
   const handleLogOut = () => {
@@ -65,6 +66,29 @@ const Navbar = () => {
       </div>
     );
   };
+
+  //update title
+  useEffect(() => {
+    const pathname = location.pathname;
+    let title = "Toys Zone";
+
+    // Update the title based on the current pathname
+    if (pathname === "/") {
+      title = "Toys Zone Home";
+    } else if (pathname === "/alltoys") {
+      title = "Toys Zone all-toys";
+    } else if (pathname === "/mytoys") {
+      title = "Toys Zone my-toys";
+    } else if (pathname === "/addtoys") {
+      title = "Toys Zone add-toys";
+    } else if (pathname === "/blog") {
+      title = "Toys Zone blog";
+    } else if (pathname.includes("/toys/")) {
+      title = "Toys Zone toy details";
+    }
+
+    document.title = title;
+  }, [location]);
 
   return (
     <>
