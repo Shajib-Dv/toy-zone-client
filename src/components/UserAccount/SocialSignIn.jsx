@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useContext } from "react";
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContest } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 
@@ -28,7 +28,7 @@ const SocialSignIn = () => {
         title="Not yet added"
         className="btn hover:bg-transparent hover:text-black  btn-circle btn-outline"
       >
-        <FaGithub className="text-3xl" />
+        <FaFacebook className="text-3xl" />
       </button>
     </div>
   );

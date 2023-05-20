@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,6 +14,7 @@ const Banner = () => {
     "https://i.ibb.co/PYQJh5t/pngwing-com-2.png",
     "https://i.ibb.co/R37pVRJ/pngwing-com.png",
   ];
+
   return (
     <>
       <Swiper

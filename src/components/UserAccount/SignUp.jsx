@@ -2,7 +2,7 @@
 
 import React, { useContext, useState } from "react";
 import { AuthContest } from "../../AuthProvider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialSignIn from "./SocialSignIn";
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
@@ -14,8 +14,9 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigateTo = useNavigate();
 
-  const { signUpUser } = useContext(AuthContest);
+  const { signUpUser, navigate } = useContext(AuthContest);
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -30,6 +31,7 @@ const SignIn = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+
         updateProfile(result.user, {
           displayName: name,
           photoURL: photo,
@@ -38,6 +40,8 @@ const SignIn = () => {
             toast("User Profile Updated");
           })
           .catch((error) => setError(error.message));
+
+        navigateTo(navigate);
 
         //reset input field
         setName("");

@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialSignIn from "./SocialSignIn";
 import { AuthContest } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
@@ -10,8 +10,12 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const { signInUser } = useContext(AuthContest);
+  let from = location.state?.from?.pathname || "/";
+
+  const { signInUser, setNavigate } = useContext(AuthContest);
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -29,6 +33,8 @@ const SignIn = () => {
           showConfirmButton: false,
           timer: 1200,
         });
+
+        navigate(from);
 
         //reset form
         setEmail("");
@@ -87,7 +93,11 @@ const SignIn = () => {
                 <SocialSignIn />
                 <p className="mt-2 text-xl font-semibold">
                   New To Toys-zone !{" "}
-                  <Link to="/signup" className="btn-link">
+                  <Link
+                    onClick={() => setNavigate(from)}
+                    to="/signup"
+                    className="btn-link"
+                  >
                     Register here
                   </Link>
                 </p>

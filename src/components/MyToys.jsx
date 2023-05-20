@@ -1,14 +1,16 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ToyTable from "./ToyTable";
+import { AuthContest } from "../AuthProvider/AuthProvider";
 
 const MyToys = () => {
   const [toys, setToys] = useState([]);
   const [isDelete, setIsDelete] = useState(false);
+  const { user } = useContext(AuthContest);
 
   useEffect(() => {
-    fetch(`https://toys-zone-server-five.vercel.app/toys/s@j.com`)
+    fetch(`https://toys-zone-server-five.vercel.app/toys/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setToys(data))
       .catch((error) => console.log(error));

@@ -13,6 +13,7 @@ import ToyDetails from "../components/ToyDetails";
 import UpdateToy from "../components/UpdateToy";
 import SignIn from "../components/UserAccount/SignIn";
 import SignUp from "../components/UserAccount/SignUp";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/toys/:id",
-        element: <ToyDetails />,
+        element: (
+          <PrivateRoute>
+            <ToyDetails />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://toys-zone-server-five.vercel.app/toys/toy/${params.id}`
@@ -37,7 +42,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/toys/update/:id",
-        element: <UpdateToy />,
+        element: (
+          <PrivateRoute>
+            <UpdateToy />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://toys-zone-server-five.vercel.app/toys/toy/${params.id}`
@@ -45,11 +54,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/mytoys",
-        element: <MyToys />,
+        element: (
+          <PrivateRoute>
+            <MyToys />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addtoys",
-        element: <AddToys />,
+        element: (
+          <PrivateRoute>
+            <AddToys />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/blog",

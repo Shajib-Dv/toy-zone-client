@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FaArrowRight,
   FaShoppingBag,
@@ -8,6 +8,8 @@ import {
   FaStarHalfAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ToyCard = ({ toy }) => {
   const {
@@ -22,9 +24,28 @@ const ToyCard = ({ toy }) => {
     toyName,
     subCategory,
   } = toy;
+
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      offset: 200,
+      duration: 100,
+      easing: "ease-in-out",
+      delay: 100,
+      anchorPlacement: "center-bottom",
+      mirror: true,
+      startEvent: "load",
+      disable: false,
+    });
+  }, []);
+
   return (
     <>
-      <div className="card w-96 mx-auto my-10 shadow-2xl shadow-purple-600">
+      <div
+        className="card w-96 mx-auto my-10 shadow-2xl shadow-purple-600"
+        data-aos="zoom-in-left"
+        data-aos-duration="1000"
+      >
         <figure className="h-64">
           <img src={toyImage} />
         </figure>

@@ -15,6 +15,7 @@ export const AuthContest = createContext({});
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [navigate, setNavigate] = useState("/");
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
 
@@ -59,6 +60,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     googleSignIn,
     loading,
+    setNavigate,
+    navigate,
   };
 
   return (

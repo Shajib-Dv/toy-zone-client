@@ -1,12 +1,14 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContest } from "../AuthProvider/AuthProvider";
 
 const AddToys = () => {
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
+  const { user } = useContext(AuthContest);
 
   const handleAddToy = (e) => {
     e.preventDefault();
@@ -91,6 +93,7 @@ const AddToys = () => {
               <input
                 type="text"
                 name="sellerName"
+                value={user?.displayName}
                 placeholder="Seller name"
                 className="p-4 outline-none bg-[#cd33c848] border-none"
               />
@@ -102,6 +105,7 @@ const AddToys = () => {
               <input
                 type="email"
                 name="sellerEmail"
+                value={user?.email}
                 required
                 placeholder="Seller email"
                 className="p-4 outline-none bg-[#cd33c848] border-none"

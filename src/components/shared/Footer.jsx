@@ -19,6 +19,7 @@ const Footer = () => {
             <br />
             We provide our best service with a best promise.
           </p>
+          <p>&copy; 2023 All Right Reserved </p>
           <div className="flex gap-4 text-2xl my-4 text-purple-900">
             <FaFacebookSquare className="cursor-pointer" />
             <FaTwitterSquare className="cursor-pointer" />
