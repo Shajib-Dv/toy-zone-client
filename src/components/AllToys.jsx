@@ -5,14 +5,16 @@ import ToyTable from "./ToyTable";
 
 const AllToys = () => {
   const [toys, setToys] = useState([]);
-  const [showMore, setShowMore] = useState(20);
+  const [showMore, setShowMore] = useState(0);
 
   useEffect(() => {
-    fetch("https://toys-zone-server-five.vercel.app/toys")
+    fetch(
+      `https://toys-zone-server-five.vercel.app/toys?startAt=${showMore}&limit=${20}`
+    )
       .then((res) => res.json())
       .then((data) => setToys(data))
       .catch((error) => console.log(error));
-  }, []);
+  }, [showMore]);
 
   const handleSearch = (text) => {
     fetch(`https://toys-zone-server-five.vercel.app/toys/name?toyName=${text}`)
@@ -77,7 +79,7 @@ const AllToys = () => {
       <div className="flex justify-center my-4">
         {toys?.length > 20 && (
           <button
-            onClick={() => setShowMore(showMore + 10)}
+            onClick={() => setShowMore(showMore + 1)}
             className="primary-btn"
           >
             Show More

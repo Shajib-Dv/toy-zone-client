@@ -1,11 +1,13 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaPen, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { AuthContest } from "../AuthProvider/AuthProvider";
 
 const ToyTable = ({ toy, editable, isDelete, setIsDelete }) => {
+  const { user } = useContext(AuthContest);
   //handle delete
   const handleDelete = (id) => {
     Swal.fire({
@@ -31,6 +33,17 @@ const ToyTable = ({ toy, editable, isDelete, setIsDelete }) => {
           .catch((error) => console.log(error));
       }
     });
+  };
+
+  //log in alert
+  const loginAlert = () => {
+    if (!user) {
+      return Swal.fire(
+        "You have to sign in first to view details",
+        "",
+        "question"
+      );
+    }
   };
 
   const {
@@ -80,7 +93,9 @@ const ToyTable = ({ toy, editable, isDelete, setIsDelete }) => {
             </div>
           ) : (
             <Link to={`/toys/${_id}`}>
-              <button className=" primary-btn btn-xs">details</button>
+              <button onClick={loginAlert} className=" primary-btn btn-xs">
+                details
+              </button>
             </Link>
           )}
         </th>

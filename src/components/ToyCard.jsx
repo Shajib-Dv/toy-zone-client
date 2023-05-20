@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   FaArrowRight,
   FaShoppingBag,
@@ -10,8 +10,12 @@ import {
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Swal from "sweetalert2";
+import { AuthContest } from "../AuthProvider/AuthProvider";
 
 const ToyCard = ({ toy }) => {
+  const { user } = useContext(AuthContest);
+
   const {
     _id,
     sellerName,
@@ -38,6 +42,17 @@ const ToyCard = ({ toy }) => {
       disable: false,
     });
   }, []);
+
+  //log in alert
+  const loginAlert = () => {
+    if (!user) {
+      return Swal.fire(
+        "You have to sign in first to view details",
+        "",
+        "question"
+      );
+    }
+  };
 
   return (
     <>
@@ -74,7 +89,7 @@ const ToyCard = ({ toy }) => {
           </div>
         </div>
         <Link to={`/toys/${_id}`}>
-          <button className="primary-btn w-full gap-2">
+          <button onClick={loginAlert} className="primary-btn w-full gap-2">
             view details <FaArrowRight className="text-xl" />
           </button>
         </Link>
