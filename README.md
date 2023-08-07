@@ -9,7 +9,7 @@
 - react-router
 - react icons
 - react tost
-- swite alert
+- sweet alert
 - firebase
 - AOS
 - daisy ui
@@ -17,6 +17,6 @@
 
 # To explore this awesome website visit below
 
-> [Toys-zone](https://toys-zone-db156.web.app/)
+> [Toys-zone](https://toyz-camp.netlify.app)
 
 `HAPPY JOURNEY...`
